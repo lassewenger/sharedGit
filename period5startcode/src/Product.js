@@ -8,34 +8,10 @@ import NewBook from "./NewBook";
 export default class Product extends React.Component {
   constructor(props) {
     super(props);
-    //this.props.route.bookStore.subscribe(this);
-    //This will read books from the server each time user navigates to
-    //The product page (a simple way to ensure "updated data")
-    //this.props.route.bookStore.fetchBooks();
-    this.nextID = 5;
-    this.state = {
-      
-    };
-      
-     this.handleChange = this.handleChange.bind(this);
   }
  
-  /*dataReady = () =>{
-    this.forceUpdate();
-  }*/
   handleClick(id) {
     bookStore.deleteBook(id);
-  }
-
-  handleAdd() {
-    bookStore.addBook({ "id": this.nextID++, "title": this.state.addTitle, "info": this.state.info, "moreInfo": this.state.moreInfo });
-  }
-  //editHandler(id){
-    //bookStore.editBook(id);
-  //} 
-
-  handleChange(event) {
-    this.setState({ addTitle: event.target.value, info: event.target.value });
   }
 
   render() {
@@ -55,8 +31,3 @@ export default class Product extends React.Component {
     )
   }
 }
-
-/*Title:<input type="text" name="title" placeholder="Enter title here..." 
-                      value={this.state.addTitle} onChange={this.handleChange} 
-              /> 
-        <button onClick={() => this.handleAdd()}>Add</button>*/

@@ -21,7 +21,7 @@ export default class NewBook extends Component {
     return (
       <div>
        <h3>Add a book</h3>
-        <form style={{ marginTop: 50 }} onSubmit={this.handleSubmit} >
+        <form onSubmit={this.handleSubmit} >
           <div className="row">
             <div className="col-sm-2" >
               Title:

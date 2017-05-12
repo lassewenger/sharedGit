@@ -2,7 +2,9 @@
 import React from "react"
 import {Link} from "react-router"
 import EditBook from './EditBook'
+import {observer} from "mobx-react"
 
+@observer
 export default class Details extends React.Component {
   render() {
     const id = this.props.params.id;
