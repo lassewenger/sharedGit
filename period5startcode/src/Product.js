@@ -46,8 +46,6 @@ export default class Product extends React.Component {
     return (
       <div>
         <h3>All our great books </h3>
-        <button onClick={() => this.handleGetBook(this.state.bookID)}>Search</button>
-        {this.handleGetBook(this.state.bookID)}
         <ul>
           {books.map((book) => 
             <li key={book.id}>{book.title + " " + book.id} 
