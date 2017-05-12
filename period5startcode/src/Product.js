@@ -18,7 +18,6 @@ export default class Product extends React.Component {
     };
       
      this.handleChange = this.handleChange.bind(this);
-     this.handleSearchBook = this.handleSearchBook.bind(this);
   }
  
   /*dataReady = () =>{
@@ -38,10 +37,6 @@ export default class Product extends React.Component {
     bookStore.getBook(id)
   }
 
-  handleSearchBook(event){
-  this.setState({ bookID: event.target.value });
-  }
-
   handleChange(event) {
     this.setState({ addTitle: event.target.value });
   }
@@ -51,8 +46,6 @@ export default class Product extends React.Component {
     return (
       <div>
         <h3>All our great books </h3>
-        <h3>Search for a book</h3>
-        <input type="text" name="searchBook" placeholder="Enter book id..." value={this.state.bookID} onChange={this.handleSearchBook} />
         <button onClick={() => this.handleGetBook(this.state.bookID)}>Search</button>
         {this.handleGetBook(this.state.bookID)}
         <ul>
