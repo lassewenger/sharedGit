@@ -2,6 +2,7 @@ import React from "react"
 import { Link } from "react-router"
 import {observer} from "mobx-react"
 import bookStore from "./models/bookStore";
+import NewBook from "./NewBook";
 
 @observer
 export default class Product extends React.Component {
@@ -11,10 +12,9 @@ export default class Product extends React.Component {
     //This will read books from the server each time user navigates to
     //The product page (a simple way to ensure "updated data")
     //this.props.route.bookStore.fetchBooks();
-    this.nextID = 4;
+    this.nextID = 5;
     this.state = {
-      addTitle: ''
-      ,bookID: ''
+      
     };
       
      this.handleChange = this.handleChange.bind(this);
@@ -33,12 +33,9 @@ export default class Product extends React.Component {
   //editHandler(id){
     //bookStore.editBook(id);
   //} 
-  handleGetBook(id) {
-    bookStore.getBook(id)
-  }
 
   handleChange(event) {
-    this.setState({ addTitle: event.target.value });
+    this.setState({ addTitle: event.target.value, info: event.target.value });
   }
 
   render() {
@@ -52,12 +49,14 @@ export default class Product extends React.Component {
             <Link to={`products/details/${book.id}`}>(details)</Link> 
             <button onClick={() => this.handleClick(book.id)} name="delete">Delete</button>
             </li>)}
-        </ul>
-        <h3>Add a book</h3>
-        Title:<input type="text" name="title" placeholder="Enter title here..." value={this.state.addTitle} onChange={this.handleChange} />
-        <button onClick={() => this.handleAdd()}>Add</button>
-        </div>
-        
+        </ul>    
+        <NewBook bookStore={bookStore} />   
+      </div>        
     )
   }
 }
+
+/*Title:<input type="text" name="title" placeholder="Enter title here..." 
+                      value={this.state.addTitle} onChange={this.handleChange} 
+              /> 
+        <button onClick={() => this.handleAdd()}>Add</button>*/

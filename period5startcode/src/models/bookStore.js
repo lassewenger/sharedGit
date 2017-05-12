@@ -32,6 +32,11 @@ class BookStore {
     this._observer = observer;
   }*/
 
+  @action
+  editBook(book){
+    this._books[this._books.findIndex((b) => {return b.id === book.id})] = book;
+  }
+  
   getBook(id) {
     return this._books.filter((book) => {
       return book.id === Number(id);
