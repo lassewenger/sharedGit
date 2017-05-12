@@ -14,9 +14,11 @@ export default class Product extends React.Component {
     this.nextID = 4;
     this.state = {
       addTitle: ''
+      ,bookID: ''
     };
       
      this.handleChange = this.handleChange.bind(this);
+     this.handleSearchBook = this.handleSearchBook.bind(this);
   }
  
   /*dataReady = () =>{
@@ -32,6 +34,13 @@ export default class Product extends React.Component {
   //editHandler(id){
     //bookStore.editBook(id);
   //} 
+  handleGetBook(id) {
+    bookStore.getBook(id)
+  }
+
+  handleSearchBook(event){
+  this.setState({ bookID: event.target.value });
+  }
 
   handleChange(event) {
     this.setState({ addTitle: event.target.value });
@@ -42,15 +51,22 @@ export default class Product extends React.Component {
     return (
       <div>
         <h3>All our great books </h3>
+        <h3>Search for a book</h3>
+        <input type="text" name="searchBook" placeholder="Enter book id..." value={this.state.bookID} onChange={this.handleSearchBook} />
+        <button onClick={() => this.handleGetBook(this.state.bookID)}>Search</button>
+        {this.handleGetBook(this.state.bookID)}
         <ul>
-          {books.map((book) => <li key={book.id}>
-            {book.title + " " + book.id} <Link to={`products/details/${book.id}`}>(details)</Link> 
-            <button onClick={() => this.handleClick(book.id)} name="delete">Delete</button></li>)}
+          {books.map((book) => 
+            <li key={book.id}>{book.title + " " + book.id} 
+            <Link to={`products/details/${book.id}`}>(details)</Link> 
+            <button onClick={() => this.handleClick(book.id)} name="delete">Delete</button>
+            </li>)}
         </ul>
         <h3>Add a book</h3>
         Title:<input type="text" name="title" placeholder="Enter title here..." value={this.state.addTitle} onChange={this.handleChange} />
         <button onClick={() => this.handleAdd()}>Add</button>
         </div>
+        
     )
   }
 }
