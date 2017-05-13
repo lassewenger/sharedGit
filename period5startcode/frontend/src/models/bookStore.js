@@ -2,13 +2,13 @@
 import {observable, useStrict, action} from "mobx"
 useStrict(true);
 
+const baseUrl = 'http://localhost:4000/api/';
+
 class BookStore {
 
 @observable _books = [];
   constructor() {
-    //this._books = [];
     this.fetchBooks();
-    //this._observer = null;
   }
   get books() {
     return this._books;
@@ -28,9 +28,6 @@ class BookStore {
   deleteBook(id){
     this._books.splice(this._books.findIndex((b) => {return b.id === id}), 1);
   }
-  /*subscribe(observer) {
-    this._observer = observer;
-  }*/
 
   @action
   editBook(book){
@@ -41,20 +38,28 @@ class BookStore {
     return this._books.filter((book) => {
       return book.id === Number(id);
     })[0];
+   /*var book;
+
+   fetch(baseUrl+'book/'+id)
+      .then((response) => {
+        return response.json();        
+      })
+      .then((json)=>{
+        book = json;
+        console.log(book);
+      })
+
+      return book;*/
   }
 
   fetchBooks = ()=> {
-    fetch("http://localhost:7777/books")
+    fetch(baseUrl+'books')
       .then((response) => {
         return response.json()
       })
       .then((response) => {
           this.changeBooks(response);
-        //this._books = response;
         console.log("Got books from server");
-        /*if (this._observer) {
-          this._observer.dataReady();
-        }*/
       })
   }
 }

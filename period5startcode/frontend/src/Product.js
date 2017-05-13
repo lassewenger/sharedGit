@@ -26,7 +26,7 @@ export default class Product extends React.Component {
             <button onClick={() => this.handleClick(book.id)} name="delete">Delete</button>
             </li>)}
         </ul>    
-        <NewBook bookStore={bookStore} />   
+        <NewBook bookStore={bookStore} />
       </div>        
     )
   }

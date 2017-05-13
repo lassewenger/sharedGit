@@ -13,6 +13,14 @@ router.get('/books', (req, res) => {
     })
 });
 
+//get one book
+router.get('/book/:id', (req, res) => {
+    Book.findOne({id: req.params.id})
+        .then((book) => {
+            res.json(book);
+        });
+})
+
 //add book
 router.post('/book', (req, res, next) =>{
     Book.create(req.body).then((book) => {
