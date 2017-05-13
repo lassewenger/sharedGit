@@ -26,30 +26,40 @@ class BookStore {
 
   @action
   deleteBook(id){
-    this._books.splice(this._books.findIndex((b) => {return b.id === id}), 1);
-  }
+    /*this._books.splice(this._books.findIndex((b) => {return b.id === id}), 1);*/
+
+    fetch(baseUrl+'book/'+id, {
+      method: 'DELETE'
+    }).then(response => 
+      response.json().then(json =>{
+        return json;
+      })
+    );    
+}
 
   @action
   editBook(book){
     this._books[this._books.findIndex((b) => {return b.id === book.id})] = book;
   }
   
+  @action
   getBook(id) {
     return this._books.filter((book) => {
       return book.id === Number(id);
     })[0];
-   /*var book;
 
-   fetch(baseUrl+'book/'+id)
+   /*var self = this;
+
+    fetch(baseUrl+'book/'+id)
       .then((response) => {
         return response.json();        
       })
       .then((json)=>{
-        book = json;
-        console.log(book);
+        self.book = json;
+        console.log(self.book);
       })
 
-      return book;*/
+      return self.book;*/
   }
 
   fetchBooks = ()=> {

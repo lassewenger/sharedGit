@@ -51,7 +51,7 @@
   },
   "scripts": {
     "backend": "json-server -p 7777 --watch books.json",
-    "start": "node scripts/start.js",
+    "start": "nodemon scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom"
   },
