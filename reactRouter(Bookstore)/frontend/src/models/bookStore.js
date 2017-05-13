@@ -21,13 +21,26 @@ class BookStore {
 
   @action
   addBook(book){
-    this._books.push(book);
+   // this._books.push(book);
+   console.log(book)
+    fetch(baseUrl+'book', {
+      method: 'POST',
+      headers: {
+        'Accept': 'aplication/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        "id": book.id,
+        "title": book.title,
+        "info": book.info,
+        "moreInfo": book.moreInfo
+      })
+    })
   }
 
   @action
   deleteBook(id){
     /*this._books.splice(this._books.findIndex((b) => {return b.id === id}), 1);*/
-
     fetch(baseUrl+'book/'+id, {
       method: 'DELETE'
     }).then(response => 
@@ -39,7 +52,20 @@ class BookStore {
 
   @action
   editBook(book){
-    this._books[this._books.findIndex((b) => {return b.id === book.id})] = book;
+    /*this._books[this._books.findIndex((b) => {return b.id === book.id})] = book;*/
+    fetch(baseUrl+'book/'+book.id, {
+      method: 'PUT',
+      body: JSON.stringify({book}),
+      headers: {
+        'Content-type': 'application/json'
+      },
+    }).then(response => 
+      response.json().then(json => {
+        console.log(json);
+        return json;
+      })
+    );
+    this.fetchBooks();
   }
   
   @action
