@@ -3,14 +3,14 @@ import React, {Component} from 'react'
 export default class NewBook extends Component {
   constructor(props) {
     super(props);
-    this.nextId = 5;
+    this.nextId = this.props.bookID;
   }
 
   handleSubmit = (evt) => {
     evt.preventDefault()
     const target = evt.target
     var book = {}
-    book.id = this.nextId++;
+    book.id = ++this.nextId
     book.title = target.title.value
     book.info = target.info.value
     book.moreInfo = target.moreInfo.value
