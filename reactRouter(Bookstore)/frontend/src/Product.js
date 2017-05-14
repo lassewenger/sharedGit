@@ -14,9 +14,19 @@ export default class Product extends React.Component {
     bookStore.deleteBook(id);
   }
 
+ 
+
   render() {
     const books = this.props.route.bookStore.books;
-    var bookID = books[books.length-1].id;
+
+   var bookID = () =>{
+    if(books.length != null){
+      return books[books.length-1].id;
+     }else{
+       return 1;
+     }
+     
+    }
     return (
       <div>
         <h3>All our great books </h3>

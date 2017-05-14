@@ -35,7 +35,10 @@ class BookStore {
         "info": book.info,
         "moreInfo": book.moreInfo
       })
+    }).then(() => {
+      this.fetchBooks();
     })
+    
   }
 
   @action
@@ -43,11 +46,11 @@ class BookStore {
     /*this._books.splice(this._books.findIndex((b) => {return b.id === id}), 1);*/
     fetch(baseUrl+'book/'+id, {
       method: 'DELETE'
-    }).then(response => 
-      response.json().then(json =>{
-        return json;
-      })
-    );    
+    }).then(() => {
+      this.fetchBooks();
+    })
+      
+    
 }
 
   @action
@@ -65,7 +68,7 @@ class BookStore {
         return json;
       })
     );
-    this.fetchBooks();
+  
   }
   
   @action
@@ -87,7 +90,7 @@ class BookStore {
 
       return self.book;*/
   }
-
+  
   fetchBooks = ()=> {
     fetch(baseUrl+'books')
       .then((response) => {
