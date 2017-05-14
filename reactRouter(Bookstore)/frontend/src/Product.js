@@ -18,14 +18,8 @@ export default class Product extends React.Component {
 
   render() {
     const books = this.props.route.bookStore.books;
+    var bookID = books[books.length-1].id;
 
-   var bookID = () =>{
-    if(books.length === 0){
-      return 1;
-     }else{
-       return books[books.length-1].id;
-     }
-    }
     return (
       <div>
         <h3>All our great books </h3>
