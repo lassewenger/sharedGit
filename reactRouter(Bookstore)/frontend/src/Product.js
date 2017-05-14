@@ -20,12 +20,11 @@ export default class Product extends React.Component {
     const books = this.props.route.bookStore.books;
 
    var bookID = () =>{
-    if(books.length != null){
-      return books[books.length-1].id;
+    if(books.length === 0){
+      return 1;
      }else{
-       return 1;
+       return books[books.length-1].id;
      }
-     
     }
     return (
       <div>

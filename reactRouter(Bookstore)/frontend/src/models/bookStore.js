@@ -58,37 +58,27 @@ class BookStore {
     /*this._books[this._books.findIndex((b) => {return b.id === book.id})] = book;*/
     fetch(baseUrl+'book/'+book.id, {
       method: 'PUT',
-      body: JSON.stringify({book}),
       headers: {
         'Content-type': 'application/json'
-      },
-    }).then(response => 
-      response.json().then(json => {
-        console.log(json);
-        return json;
-      })
-    );
-  
+       },
+      body: JSON.stringify({
+        "id": book.id,
+        "title": book.title,
+        "info": book.info,
+        "moreInfo": book.moreInfo
+      }),
+     }).then(() => {
+       this.fetchBooks();
+     }).then(() => {
+       this.getBook(book.id);
+     })     
   }
   
   @action
-  getBook(id) {
+  getBook(id) {    
     return this._books.filter((book) => {
       return book.id === Number(id);
-    })[0];
-
-   /*var self = this;
-
-    fetch(baseUrl+'book/'+id)
-      .then((response) => {
-        return response.json();        
-      })
-      .then((json)=>{
-        self.book = json;
-        console.log(self.book);
-      })
-
-      return self.book;*/
+    })[0];      
   }
   
   fetchBooks = ()=> {
